@@ -5,7 +5,17 @@
 INSTALLATION
 ------------
 
-To install this module type the following:
+Ideally, use the CPANPLUS or CPAN shell (`cpanp` or `cpan`) to download and
+install the latest distribution from your nearest CPAN.
+
+To install this module manually type the following:
+
+   perl Build.PL
+   ./Build
+   ./Build test
+   ./Build install
+
+Or, if you prefer to use make:
 
    perl Makefile.PL
    make
@@ -16,8 +26,5 @@ To install this module type the following:
 DEPENDENCIES
 ------------
 
-This module requires these other modules and libraries:
-
-  Petal
-
+See Build.PL for a full list of dependencies.
 

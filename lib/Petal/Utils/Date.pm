@@ -3,12 +3,16 @@ package Petal::Utils::Date;
 use strict;
 use warnings::register;
 
+use Carp;
 use Date::Format;
 
 use base qw( Petal::Utils::Base );
 
 use constant name    => 'date';
 use constant aliases => qw();
+
+our $VERSION  = ((require Petal::Utils), $Petal::Utils::VERSION)[1];
+our $REVISION = (split(/ /, ' $Revision: 1.2 $ '))[2];
 
 sub process {
     my $self = shift;

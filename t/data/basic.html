@@ -22,6 +22,10 @@
 			first eq second = <span tal:replace="eq: $first $second">equal</span>
 			first_name like regex = <span tal:replace="like: $first_name ^Will.+m">like</span>
 
+			<!--? If/then/else -->
+			if first then first else second = <span tal:replace="if: first then: first else: second">if</span>
+			if second then first else second = <span tal:replace="if: second then: first else: second">if</span>
+
 			<!--? Loop through hash keys -->
 			<!--? CURRENTLY NOT WORKING - PETAL CAN'T DO DYNAMIC KEYS? -->
 			<ul>

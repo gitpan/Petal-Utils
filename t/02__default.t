@@ -97,6 +97,10 @@ like($out, qr/first and second = 0/, 'and');
 like($out, qr/first eq second = 0/, 'equal');
 like($out, qr/first_name like regex = 1/, 'like');
 
+# If/then/else
+like($out, qr/first then first else second = 1/, 'if');
+like($out, qr/second then first else second = 0/, 'if');
+
 # Hash keys - NOT WORKING AT PRESENT
 #like($out, qr/key1 = value1/, 'keys');
 #like($out, qr/key2 = value1/, 'keys');

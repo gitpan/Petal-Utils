@@ -7,6 +7,9 @@ use warnings::register;
 
 use Carp;
 
+our $VERSION  = ((require Petal::Utils), $Petal::Utils::VERSION)[1];
+our $REVISION = (split(/ /, ' $Revision: 1.2 $ '))[2];
+
 ## Define the enclosed packages inside the Petal Modifiers hash
 sub install {
     my $class = shift;

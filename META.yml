@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name: Petal-Utils
-version: 0.03
+version: 0.04
 license: perl
 distribution_type: module
 requires:
@@ -14,33 +14,50 @@ conflicts: {}
 provides:
   Petal::Utils:
     file: lib/Petal/Utils.pm
-    version: 0.03
+    version: 0.04
   Petal::Utils::And:
     file: lib/Petal/Utils/And.pm
+    version: 0.04
   Petal::Utils::Base:
     file: lib/Petal/Utils/Base.pm
+    version: 0.04
   Petal::Utils::Date:
     file: lib/Petal/Utils/Date.pm
+    version: 0.04
   Petal::Utils::Dump:
     file: lib/Petal/Utils/Dump.pm
+    version: 0.04
   Petal::Utils::Each:
     file: lib/Petal/Utils/Each.pm
+    version: 0.04
   Petal::Utils::Equal:
     file: lib/Petal/Utils/Equal.pm
+    version: 0.04
+  Petal::Utils::If:
+    file: lib/Petal/Utils/If.pm
+    version: 0.04
   Petal::Utils::Keys:
     file: lib/Petal/Utils/Keys.pm
+    version: 0.04
   Petal::Utils::Like:
     file: lib/Petal/Utils/Like.pm
+    version: 0.04
   Petal::Utils::LowerCase:
     file: lib/Petal/Utils/LowerCase.pm
+    version: 0.04
   Petal::Utils::Or:
     file: lib/Petal/Utils/Or.pm
+    version: 0.04
   Petal::Utils::Sort:
     file: lib/Petal/Utils/Sort.pm
+    version: 0.04
   Petal::Utils::UC_First:
     file: lib/Petal/Utils/UC_First.pm
+    version: 0.04
   Petal::Utils::US_Date:
     file: lib/Petal/Utils/US_Date.pm
+    version: 0.04
   Petal::Utils::UpperCase:
     file: lib/Petal/Utils/UpperCase.pm
+    version: 0.04
 generated_by: Module::Build version 0.20

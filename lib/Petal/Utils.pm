@@ -22,7 +22,7 @@ use warnings::register;
 
 use Petal::Hash;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 our $DEBUG   = 0;
 
 #------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ our %PLUGIN_SET =
    ':all'     => [qw( :default :hash :debug )],
    ':default' => [qw( :text :date :logic :list )],
    ':text'    => [qw( UpperCase LowerCase UC_First )],
-   ':logic'   => [qw( And Or Equal Like )],
+   ':logic'   => [qw( And If Or Equal Like )],
    ':date'    => [qw( Date US_Date )],
    ':list'    => [qw( Sort )],
    ':hash'    => [qw( Each Keys )],
@@ -156,7 +156,7 @@ __END__
 
 =head1 DESCRIPTION
 
-The Petal::Utils package contains commonly used Petal modifiers (or plugins),
+The Petal::Utils package contains commonly used L<Petal> modifiers (or plugins),
 and bundles them with an easy-to-use installation interface.  By default, a
 set of modifiers are installed into Petal when you use this module.  You can
 change which modifiers are installed by naming them after the use statement:
@@ -232,10 +232,19 @@ to US format (mm/dd/yyyy).
 
 =over 4
 
+=item if: $expr1 then: $expr2 else: $expr3
+
+Do an if/then/else test and return the value of the expression executed.
+Truthfulness of $expr1 is according to Perl (e.g., non-zero, non-empty string).
+
+  <p tal:attributes="class if: on_a_page then: a_class else: another_class">
+    Some text here...
+  </p>
+
 =item or: $expr1 $expr2
 
-Do a logical or.  Truthfulness is according to Perl (e.g., non-zero,
-non-empty string).
+Do a logical or.  Truthfulness is according to Perl (e.g., non-zero, non-empty
+string).
 
   <p tal:if="or: $first $second">
     first or second = <span tal:replace="or: $first $second">or</span>
@@ -243,8 +252,8 @@ non-empty string).
 
 =item and: $expr1 $expr2
 
-Do a logical and.  Truthfulness is according to Perl (e.g., non-zero,
-non-empty string).
+Do a logical and.  Truthfulness is according to Perl (e.g., non-zero, non-empty
+string).
 
   first and second = <span tal:replace="and: $first $second">and</span>
 
@@ -337,7 +346,7 @@ itself. Use it at your own risk.
 
 =head1 THANKS
 
-Thanks to Jean-Michel Hiver for making Petal available to the Perl community.
+Thanks to Jean-Michel Hiver for making L<Petal> available to the Perl community.
 
 =head1 SEE ALSO
 

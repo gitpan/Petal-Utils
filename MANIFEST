@@ -6,6 +6,7 @@ MANIFEST.SKIP
 META.yml
 Makefile.PL
 README
+TODO
 lib/Petal/Utils.pm
 lib/Petal/Utils/And.pm
 lib/Petal/Utils/Base.pm
@@ -13,6 +14,7 @@ lib/Petal/Utils/Date.pm
 lib/Petal/Utils/Dump.pm
 lib/Petal/Utils/Each.pm
 lib/Petal/Utils/Equal.pm
+lib/Petal/Utils/If.pm
 lib/Petal/Utils/Keys.pm
 lib/Petal/Utils/Like.pm
 lib/Petal/Utils/LowerCase.pm
