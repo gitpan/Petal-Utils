@@ -1,0 +1,18 @@
+Revision history for Perl extension Petal::Utils.
+
+0.02
+    *	Renamed to Petal::Utils so Petal doesn't think the Utils package
+	is a Petal Hash modifier. [Steve Purkis]
+    *	Moved to Module::Build. [Steve Purkis]
+    +	Added modifiers: Date Dump Equal(eq) And Like Sort [Steve Purkis]
+    +	Added import() functionality to specify modifier sets. [Steve Purkis]
+    *	Split up modifiers into individual Petal::Utils::<modifier> modules
+	that are loaded as needed. [Steve Purkis]
+    *	Restructured test directory, using File::Spec and more verbose file
+	names. [Steve Purkis]
+    *	Added error handling code to existing modifiers. [Steve Purkis]
+    
+0.01
+    +	Initial project created Fri Sep 5 2003 [William McKee]
+    +	original version; created by h2xs 1.21 with options
+		-X -A -n Petal::Hash::Utils

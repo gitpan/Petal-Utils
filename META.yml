@@ -1,0 +1,46 @@
+--- #YAML:1.0
+name: Petal-Utils
+version: 0.02
+license: perl
+distribution_type: module
+requires:
+  Petal: 1.06
+recommends:
+  Date::Format: 0.01
+build_requires:
+  Module::Build: 0.19
+  Test::More: 0.01
+conflicts: {}
+provides:
+  Petal::Utils:
+    file: lib/Petal/Utils.pm
+    version: 0.02
+  Petal::Utils::And:
+    file: lib/Petal/Utils/And.pm
+  Petal::Utils::Base:
+    file: lib/Petal/Utils/Base.pm
+  Petal::Utils::Date:
+    file: lib/Petal/Utils/Date.pm
+  Petal::Utils::Dump:
+    file: lib/Petal/Utils/Dump.pm
+  Petal::Utils::Each:
+    file: lib/Petal/Utils/Each.pm
+  Petal::Utils::Equal:
+    file: lib/Petal/Utils/Equal.pm
+  Petal::Utils::Keys:
+    file: lib/Petal/Utils/Keys.pm
+  Petal::Utils::Like:
+    file: lib/Petal/Utils/Like.pm
+  Petal::Utils::LowerCase:
+    file: lib/Petal/Utils/LowerCase.pm
+  Petal::Utils::Or:
+    file: lib/Petal/Utils/Or.pm
+  Petal::Utils::Sort:
+    file: lib/Petal/Utils/Sort.pm
+  Petal::Utils::UC_First:
+    file: lib/Petal/Utils/UC_First.pm
+  Petal::Utils::US_Date:
+    file: lib/Petal/Utils/US_Date.pm
+  Petal::Utils::UpperCase:
+    file: lib/Petal/Utils/UpperCase.pm
+generated_by: Module::Build version 0.20

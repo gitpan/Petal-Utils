@@ -1,0 +1,47 @@
+<html xmlns:tal="http://purl.org/petal/1.0/">
+	<body>
+		<p>
+			<!--? Text -->
+			lc: <span tal:replace="lc: string: ALL_CAPS">lc</span>
+			uc: <span tal:replace="uc: string: all_lower">uc</span>
+			uc_first: <span tal:replace="uc_first: string: william mckee">uc_first</span>
+
+			<!--? Dates & conversion -->
+			date = <span tal:replace="date: $date">date</span>
+			date1 = <span tal:replace="us_date: $date1">2003-09-05</span>
+			date2 = <span tal:replace="us_date: $date2">2003/09/05</span>
+			date3 = <span tal:replace="us_date: $date3">20030905</span>
+			date4 = <span tal:replace="us_date: $date3 --">20030905</span>
+
+			<!--? Comparison -->
+			first = <span tal:replace="first">first</span>
+			second = <span tal:replace="second">second</span>
+			first_name = <span tal:replace="first_name">first_name</span>
+			first or second = <span tal:replace="or: $first $second">or</span>
+			first and second = <span tal:replace="and: $first $second">and</span>
+			first eq second = <span tal:replace="eq: $first $second">equal</span>
+			first_name like regex = <span tal:replace="like: $first_name ^Will.+m">like</span>
+
+			<!--? Loop through hash keys -->
+			<!--? CURRENTLY NOT WORKING - PETAL CAN'T DO DYNAMIC KEYS? -->
+			<ul>
+				<li tal:repeat="key keys: $hash_ref"><span tal:replace="key">key</span> = <span tal:replace="hash_ref/key">value</span></li>
+			</ul>
+
+			<!--? But it can do static keys -->
+			<span tal:content="hash_ref/key1">key1</span>
+
+			<!--? Loop through hash keys/values -->
+			<ul>
+				<li tal:repeat="item each: $hash_ref"><span tal:replace="item/key">key</span> =&gt; <span tal:replace="item/val">value</span></li>
+			</ul>
+
+			<!--? Loop through sorted values -->
+			sort: <?repeat name="key sort: $array_ref"?>$key,<?end?>
+
+			<!--? Dump -->
+			dump first_name: <span tal:replace="dump: first_name">dump</span>
+		</p>
+	</body>
+</html>
+

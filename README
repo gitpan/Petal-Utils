@@ -1,0 +1,155 @@
+NAME
+    Petal::Utils - Useful template modifiers for Petal.
+
+SYNOPSIS
+      # install the default set of Petal modifiers:
+      use Petal::Utils;
+
+      # you can also install modifiers manually:
+      Petal::Utils->install( 'some_modifier', ':some_set' );
+
+      # see below for modifiers available & template syntax
+
+DESCRIPTION
+    The Petal::Utils package contains commonly used Petal modifiers (or
+    plugins), and bundles them with an easy-to-use installation interface.
+    By default, a set of modifiers are installed into Petal when you use
+    this module. You can change which modifiers are installed by naming them
+    after the use statement:
+
+      # use the default set:
+      use Petal::Utils qw( :default );
+
+      # use the date set of modifiers:
+      use Petal::Utils qw( :date );
+
+      # use only named modifiers, plus the debug set:
+      use Petal::Utils qw( UpperCase Date :debug );
+
+      # don't install any modifiers
+      use Petal::Utils qw();
+
+    You'll find a list of plugin sets throughout this document. You can also
+    get a complete list by looking at the variable:
+
+      %Petal::Utils::PLUGIN_SET;
+
+    For details on how the plugins are installed, see the "Advanced Petal"
+    section of the Petal documentation.
+
+MODIFIERS
+    Each modifier is listed under the set it belongs to.
+
+  :text
+    lowercase:, lc: $string
+        Make the entire string lowercase.
+
+          <p tal:content="lc: $string">lower</p>
+
+    uppercase:, uc: $string
+        Make the entire string uppercase.
+
+          <p tal:content="uc: $string">upper</p>
+
+    uc_first: $string
+        Make the first letter of the string uppercase.
+
+          <p tal:content="uc_first: $string">uc_first</p>
+
+  :date
+    date: $date
+        Convert a time() integer to a date string using Date::Format.
+
+          <span tal:replace="date: $date">Jan  1 1970 01:00:01</span>
+
+    us_date: $date
+        Convert an international date stamp (e.g., yyyymmdd, yyyy-mm-dd,
+        yyyy/mm/dd) to US format (mm/dd/yyyy).
+
+          <p tal:content="us_date: $date">2003-09-05</p>
+
+  :logic
+    or: $expr1 $expr2
+        Do a logical or. Truthfulness is according to Perl (e.g., non-zero,
+        non-empty string).
+
+          <p tal:if="or: $first $second">
+            first or second = <span tal:replace="or: $first $second">or</span>
+          </p>
+
+    and: $expr1 $expr2
+        Do a logical and. Truthfulness is according to Perl (e.g., non-zero,
+        non-empty string).
+
+          first and second = <span tal:replace="and: $first $second">and</span>
+
+    equal:, eq: $expr1 $expr2
+        Test for equality. Numbers are compared with "==", strings with
+        "eq". Truthfulness is according to Perl (e.g., non-zero, non-empty
+        string).
+
+          first eq second = <span tal:replace="eq: $first $second">equal</span>
+
+    like: $expr $regex
+        Test for equality to a regular expression (see perlre).
+
+          name like regex = <span tal:replace="like: $name ^Will.+m">like</span>
+
+  :list
+    sort: $list
+        Sort the values in a list before returning it.
+
+          <ul>
+            <li tal:repeat="item sort: $array_ref">$item</li>
+          </ul>
+
+  :hash
+    keys: $hash
+        Return a list of keys for a hashref. Note: It appears that values
+        cannot be accessed with dynamic keys. If you need the keys and
+        values, use "each:".
+
+          <ul>
+            <li tal:repeat="key keys: $hash_ref"><span tal:replace="key">key</span></li>
+          </ul>
+
+    each: $hash
+        Return a list of key/value pairs for a hashref.
+
+          <ul>
+            <li tal:repeat="item each: $hash_ref">
+              <span tal:replace="item/key">key</span> => <span tal:replace="item/val">value</span>
+            </li>
+          </ul>
+
+  :debug
+    dump: $expr
+        Dump the data strcture of the value given.
+
+          dump name: <span tal:replace="dump: name">dump</span>
+
+SUPERSETS
+    At the time of writing, the following supersets were available:
+
+       ':none'    => [],
+       ':all'     => [qw( :default :hash :debug )],
+       ':default' => [qw( :text :date :logic :list )],
+
+    See %Petal::Utils::PLUGIN_SET for an up-to-date list.
+
+AUTHOR
+    William McKee <william@knowmad.com>, and Steve Purkis <spurkis@epn.nu>
+
+COPYRIGHT
+    Copyright (C) 2003 William McKee & Steve Purkis.
+
+    This module is free software and is distributed under the same license
+    as Perl itself. Use it at your own risk.
+
+THANKS
+    Thanks to Jean-Michel Hiver for making Petal available to the Perl
+    community.
+
+SEE ALSO
+    Petal
+
