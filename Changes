@@ -1,5 +1,15 @@
 Revision history for Perl extension Petal::Utils.
 
+0.06
+    + Added Contributing section to README [William McKee]
+    + Added new utility function to Base.pm - split_args [William McKee, Warren S.]
+    + Added new test library, t/20__Base.pm [William McKee]
+    + Added limit: and limitr: modifiers and tests [William McKee]
+    + Added create_href: modifier and tests [William McKee]
+    + Added substr: modifier and tests [William McKee]
+    + Added decode: modifier and tests [William McKee, Warren S.]
+    + Added printf: modifier and tests [William McKee, Warren S.]
+
 0.05
     +	Wrote UriEscape modifier [Steve Purkis]
     +	Added RELEASE.TASKS file [William McKee]

@@ -22,7 +22,7 @@ use warnings::register;
 
 use Petal::Hash;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 our $DEBUG   = 0;
 
 #------------------------------------------------------------------------------
@@ -34,12 +34,12 @@ our %PLUGIN_SET =
    ':none'    => [],
    ':all'     => [qw( :default :hash :debug )],
    ':default' => [qw( :text :date :logic :list :uri )],
-   ':text'    => [qw( UpperCase LowerCase UC_First )],
-   ':logic'   => [qw( And If Or Equal Like )],
+   ':text'    => [qw( UpperCase LowerCase UC_First Substr Printf )],
+   ':logic'   => [qw( And If Or Equal Like Decode )],
    ':date'    => [qw( Date US_Date )],
-   ':list'    => [qw( Sort )],
+   ':list'    => [qw( Sort Limit Limitr)],
    ':hash'    => [qw( Each Keys )],
-   ':uri'     => [qw( UriEscape )],
+   ':uri'     => [qw( UriEscape Create_Href )],
    ':debug'   => [qw( Dump )],
   );
 
@@ -208,6 +208,24 @@ Make the first letter of the string uppercase.
 
   <p tal:content="uc_first: $string">uc_first</p>
 
+=item substr: $string [offset] [length] [ellipsis]
+
+Extract a substring from a string. Optionally add an ellipsis (...) to the
+end. See also, perldoc -f substr.
+
+  <span petal:content="substr:$str">string</span>       # does nothing
+  <span petal:content="substr:$str 2">string</span>     # cuts the first two chars
+  <span petal:content="substr:$str 2 5">string</span>   # extracts chars 2-7
+  <span petal:content="substr:$str 2 5 1">string with ellipsis</span>  # same as above and adds an ellipsis
+
+=item printf: format list
+
+The printf modifier acts exactly like Perl's sprintf function to print
+formatted strings.
+
+  <p petal:content="printf:'%s' 'Astro'">Astro</p>
+  <p petal:content="printf:'$%0.2f' '2.5'">$2.50</p>
+
 =back
 
 =head2 :date
@@ -271,6 +289,22 @@ Test for equality to a regular expression (see L<perlre>).
 
   name like regex = <span tal:replace="like: $name ^Will.+m">like</span>
 
+=item decode, decode: expression search result [search result]... [default]
+
+The decode function has the functionality of an IF-THEN-ELSE statement. A
+case-sensitive regex comparison is performed. All text strings must be
+enclosed in single quotes.
+
+    'expression' is the value to compare.
+    'search' is the value that is compared against expression.
+    'result' is the value returned, if expression is equal to search.
+    'default. is optional.  If no matches are found, the decode will return
+      default.  If default is omitted, then the decode statement will return
+      null (if no matches are found). 
+
+  <p petal:content="decode:$str 'dog' 'Satchel'">100</p>  # if $str = dog, returns Satchel
+  <p petal:content="decode:$str 'cat' 'Buckey' 'Satchel'">Astro</p>  # if $str = cat, returns Buckey, else Satchel
+
 =back
 
 =head2 :list
@@ -283,6 +317,22 @@ Sort the values in a list before returning it.
 
   <ul>
     <li tal:repeat="item sort: $array_ref">$item</li>
+  </ul>
+
+=item limit: $list count
+
+Limit the values in a list before returning it.
+
+  <ul>
+    <li tal:repeat="item limit: $array_ref 2">$item</li>
+  </ul>
+
+=item limitr: $list count
+
+Shuffle the list then limit the returned values to the specified count.
+
+  <ul>
+    <li tal:repeat="item limitr: $array_ref 2">$item</li>
   </ul>
 
 =back
@@ -322,6 +372,16 @@ Use L<URI::Escape>'s uri_escape() to escape the return value of the expression.
 
   <a href="http://foo/get.html?item=${uri_escape: item/key}">get $item/key</a>
 
+=item create_href: $url [protocol]
+
+Creates an absolute uri from a url with the given protocol (e.g., http, ftp --
+do not include the protocol separators). If the url does not have the
+protocol included, it will be appended. If no protocol is given, 'http' will
+be used.
+
+  <a petal:attr="href create_href:$url">HTTP Link</a>
+  <a petal:attr="href create_href:$url ftp">FTP Link</a>
+
 =back
 
 =head2 :debug
@@ -345,6 +405,14 @@ At the time of writing, the following supersets were available:
    ':default' => [qw( :text :date :logic :list )],
 
 See C<%Petal::Utils::PLUGIN_SET> for an up-to-date list.
+
+=head1 CONTRIBUTING
+
+Contributions to the modifiers are welcome! You can suggest new modifiers to
+add to the suite. You will have better luck getting your modifier added by
+providing a module (see lib/Petal/Utils/And.pm for an example), a patch to
+Utils.pm (with a modified PLUGIN_SET and documentation for your new modifier),
+and a test suite. All modifiers are subject to the discretion of the authors.
 
 =head1 AUTHORS
 
