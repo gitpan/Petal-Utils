@@ -69,6 +69,15 @@ MODIFIERS
           <p tal:content="us_date: $date">2003-09-05</p>
 
   :logic
+    if: $expr1 then: $expr2 else: $expr3
+        Do an if/then/else test and return the value of the expression
+        executed. Truthfulness of $expr1 is according to Perl (e.g.,
+        non-zero, non-empty string).
+
+          <p tal:attributes="class if: on_a_page then: a_class else: another_class">
+            Some text here...
+          </p>
+
     or: $expr1 $expr2
         Do a logical or. Truthfulness is according to Perl (e.g., non-zero,
         non-empty string).
@@ -122,6 +131,13 @@ MODIFIERS
             </li>
           </ul>
 
+  :uri
+    uri_escape: $expr
+        Use URI::Escape's uri_escape() to escape the return value of the
+        expression.
+
+          <a href="http://foo/get.html?item=${uri_escape: item/key}">get $item/key</a>
+
   :debug
     dump: $expr
         Dump the data strcture of the value given.
@@ -137,11 +153,11 @@ SUPERSETS
 
     See %Petal::Utils::PLUGIN_SET for an up-to-date list.
 
-AUTHOR
-    William McKee <william@knowmad.com>, and Steve Purkis <spurkis@epn.nu>
+AUTHORS
+    William McKee <william@knowmad.com>, and Steve Purkis <spurkis@cpan.org>
 
 COPYRIGHT
-    Copyright (C) 2003 William McKee & Steve Purkis.
+    Copyright (c) 2003-2004 William McKee & Steve Purkis.
 
     This module is free software and is distributed under the same license
     as Perl itself. Use it at your own risk.

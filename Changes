@@ -1,5 +1,11 @@
 Revision history for Perl extension Petal::Utils.
 
+0.05
+    +	Wrote UriEscape modifier [Steve Purkis]
+    +	Added RELEASE.TASKS file [William McKee]
+    +	Updated Build.PL to create readme [Steve Purkis]
+    +	Cleaned up test area, broke up tests by modifier set [Steve Purkis]
+
 0.04
 (all changes by Steve Purkis)
     +	Wrote If modifier.

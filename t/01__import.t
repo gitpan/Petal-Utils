@@ -24,9 +24,11 @@ is( $@, '', 'use set :default' );
 eval 'use Petal::Utils qw( UpperCase );';
 is( $@, '', 'use plugin UpperCase' );
 
-eval 'use Petal::Utils qw( :non_existent );';
-isnt( $@, '', 'error loading non-existent set' );
+{
+    no warnings;
+    eval 'use Petal::Utils qw( :non_existent );';
+    isnt( $@, '', 'error loading non-existent set' );
 
-eval 'use Petal::Utils qw( non_existent );';
-isnt( $@, '', 'error loading non-existent plugin' );
-
+    eval 'use Petal::Utils qw( non_existent );';
+    isnt( $@, '', 'error loading non-existent plugin' );
+}

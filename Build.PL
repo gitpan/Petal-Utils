@@ -22,15 +22,17 @@ my $build = Module::Build->new
   (
    module_name        => 'Petal::Utils',
    dist_version_from  => 'lib/Petal/Utils.pm',
+   create_readme      => 1,
    create_makefile_pl => 'passthrough',
    license            => 'perl',
    build_requires     => {
 			  'Test::More'    => '0.01',
-			  'Module::Build' => '0.19',
+			  'Module::Build' => '0.20',
 		         },
    requires           => {
 			  'Petal'        => '1.06',
 			  'Date::Format' => '0.01',
+			  'URI::Escape'  => '3.0',
 		         },
   );
 
@@ -41,7 +43,7 @@ __END__
 
 =head1 AUTHOR
 
-Steve Purkis <spurkis@epn.nu>
+Steve Purkis <spurkis@cpan.org>
 
 =cut
 

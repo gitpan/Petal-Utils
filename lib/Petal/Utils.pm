@@ -22,7 +22,7 @@ use warnings::register;
 
 use Petal::Hash;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 our $DEBUG   = 0;
 
 #------------------------------------------------------------------------------
@@ -33,12 +33,13 @@ our %PLUGIN_SET =
   (
    ':none'    => [],
    ':all'     => [qw( :default :hash :debug )],
-   ':default' => [qw( :text :date :logic :list )],
+   ':default' => [qw( :text :date :logic :list :uri )],
    ':text'    => [qw( UpperCase LowerCase UC_First )],
    ':logic'   => [qw( And If Or Equal Like )],
    ':date'    => [qw( Date US_Date )],
    ':list'    => [qw( Sort )],
    ':hash'    => [qw( Each Keys )],
+   ':uri'     => [qw( UriEscape )],
    ':debug'   => [qw( Dump )],
   );
 
@@ -311,6 +312,18 @@ Return a list of key/value pairs for a hashref.
 
 =back
 
+=head2 :uri
+
+=over 4
+
+=item uri_escape: $expr
+
+Use L<URI::Escape>'s uri_escape() to escape the return value of the expression.
+
+  <a href="http://foo/get.html?item=${uri_escape: item/key}">get $item/key</a>
+
+=back
+
 =head2 :debug
 
 =over 4
@@ -333,16 +346,16 @@ At the time of writing, the following supersets were available:
 
 See C<%Petal::Utils::PLUGIN_SET> for an up-to-date list.
 
-=head1 AUTHOR
+=head1 AUTHORS
 
-William McKee <william@knowmad.com>, and Steve Purkis <spurkis@epn.nu>
+William McKee <william@knowmad.com>, and Steve Purkis <spurkis@cpan.org>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2003 William McKee & Steve Purkis.
+Copyright (c) 2003-2004 William McKee & Steve Purkis.
 
 This module is free software and is distributed under the same license as Perl
-itself. Use it at your own risk.
+itself.  Use it at your own risk.
 
 =head1 THANKS
 
