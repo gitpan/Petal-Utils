@@ -22,7 +22,8 @@ use warnings::register;
 
 use Petal::Hash;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
+our $DEBUG   = 0;
 
 #------------------------------------------------------------------------------
 # Cusomized import() so the user can select different plugins & sets
@@ -85,7 +86,7 @@ sub install_plugin {
 
     my $plugin = $class->find_plugin( $name );
 
-    warnings::warn( "installing Petal plugin: '$name'" ) if warnings::enabled;
+    warn "installing Petal plugin: '$name'\n" if $DEBUG;
 
     if (UNIVERSAL::can($plugin, 'install')) {
 	$plugin->install;
@@ -113,16 +114,22 @@ sub load_plugin {
     my $class  = shift;
     my $plugin = shift;
 
-    my $plugin_class = "Petal::Utils::$plugin";
+    my $plugin_class = $class->get_plugin_class_for( $plugin );
     return $plugin_class if $plugin_class->can( 'process' );
 
     eval "require $plugin_class";
     if ($@) {
-	warnings::warn($@) if warnings::enabled;
+	warnings::warn("error loading $plugin plugin: $@") if warnings::enabled;
 	return;
     }
 
     return $plugin_class;
+}
+
+sub get_plugin_class_for {
+    my $class  = shift;
+    my $plugin = shift;
+    my $plugin_class = "$class\::$plugin";
 }
 
 

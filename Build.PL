@@ -29,9 +29,7 @@ my $build = Module::Build->new
 			  'Module::Build' => '0.19',
 		         },
    requires           => {
-			  'Petal' => '1.06',
-		         },
-   recommends         => {
+			  'Petal'        => '1.06',
 			  'Date::Format' => '0.01',
 		         },
   );

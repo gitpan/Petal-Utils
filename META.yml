@@ -1,12 +1,12 @@
 --- #YAML:1.0
 name: Petal-Utils
-version: 0.02
+version: 0.03
 license: perl
 distribution_type: module
 requires:
-  Petal: 1.06
-recommends:
   Date::Format: 0.01
+  Petal: 1.06
+recommends: {}
 build_requires:
   Module::Build: 0.19
   Test::More: 0.01
@@ -14,7 +14,7 @@ conflicts: {}
 provides:
   Petal::Utils:
     file: lib/Petal/Utils.pm
-    version: 0.02
+    version: 0.03
   Petal::Utils::And:
     file: lib/Petal/Utils/And.pm
   Petal::Utils::Base:
